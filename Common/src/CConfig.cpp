@@ -3493,7 +3493,7 @@ void CConfig::SetPostprocessing(unsigned short val_software, unsigned short val_
     SU2_MPI::Error("Only STANDARD_AIR fluid model can be used with US Measurement System", CURRENT_FUNCTION);
   }
 
-  if (nemo && Kind_TransCoeffModel != WILKE ) {
+  if (nemo && Kind_TransCoeffModel == GUPTAYOS ) {
     SU2_MPI::Error("Only WILKE transport model is stable for the NEMO solver.", CURRENT_FUNCTION);
   }
 
@@ -3506,10 +3506,6 @@ void CConfig::SetPostprocessing(unsigned short val_software, unsigned short val_
   if (nemo){
     if (Kind_Upwind_Flow == AUSMPWPLUS)
       SU2_MPI::Error("AUSMPW+ is extremely unstable. Feel free to fix me!", CURRENT_FUNCTION);
-  }
-
-  if (GetGasModel() == "ARGON" && GetKind_FluidModel() == SU2_NONEQ){
-      SU2_MPI::Error("ARGON is not working with SU2_NONEQ fluid model!", CURRENT_FUNCTION);
   }
 
   if (GetKind_FluidModel() == MUTATIONPP && GetFrozen() == true){

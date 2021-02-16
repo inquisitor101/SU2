@@ -682,7 +682,7 @@ void CNEMONSSolver::BC_IsothermalNonCatalytic_Wall(CGeometry *geometry,
   unsigned short RHOCVTR_INDEX = nodes->GetRhoCvtrIndex();
 
   /*--- Define 'proportional control' constant ---*/
-  C = 5;
+  C = 1;
 
   /*--- Identify the boundary ---*/
   string Marker_Tag = config->GetMarker_All_TagBound(val_marker);
@@ -764,9 +764,8 @@ void CNEMONSSolver::BC_IsothermalNonCatalytic_Wall(CGeometry *geometry,
       //kve += Cpve*(val_eddy_viscosity/Prandtl_Turb);
 
       /*--- Apply to the linear system ---*/
-      Res_Visc[nSpecies+nDim]   = ((ktr*(Ti-Tj)    + kve*(Tvei-Tvej)) +
-                                   (ktr*(Twall-Ti) + kve*(Twall-Tvei))*C)*Area/dij;
-      Res_Visc[nSpecies+nDim+1] = (kve*(Tvei-Tvej) + kve*(Twall-Tvei) *C)*Area/dij;
+      Res_Visc[nSpecies+nDim]   = ((ktr*(Twall-Tj) + kve*(Twall-Tvej))*C)*Area/dij;
+      Res_Visc[nSpecies+nDim+1] = (kve*(Twall-Tvej) *C)*Area/dij;
 
       LinSysRes.SubtractBlock(iPoint, Res_Visc);
 

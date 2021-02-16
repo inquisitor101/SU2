@@ -1356,6 +1356,11 @@ void CNEMOEulerSolver::SetNondimensionalization(CConfig *config, unsigned short 
         NonDimTable.PrintFooter();
         break;
 
+      case DEBUG:
+        ModelTable << "Debug";
+        NonDimTable.PrintFooter();
+        break;
+
       default:
         break;
       }

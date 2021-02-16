@@ -351,6 +351,8 @@ void CNEMOCompOutput::SetVolumeOutputFields(CConfig *config){
     if (nDim == 3)
      AddVolumeOutput("SKIN_FRICTION-Z", "Skin_Friction_Coefficient_z", "PRIMITIVE", "z-component of the skin friction vector");
 
+    AddVolumeOutput("THERMAL_TR",       "Thermal_tr",       "PRIMITIVE", "thermal tr");
+    AddVolumeOutput("THERMAL_VE",       "Thermal_ve",       "PRIMITIVE", "thermal vib");
     AddVolumeOutput("HEAT_FLUX", "Heat_Flux", "PRIMITIVE", "Heat-flux");
     AddVolumeOutput("Y_PLUS", "Y_Plus", "PRIMITIVE", "Non-dim. wall distance (Y-Plus)");
 
@@ -496,6 +498,9 @@ void CNEMOCompOutput::LoadVolumeData(CConfig *config, CGeometry *geometry, CSolv
     SetVolumeOutputValue("LAMINAR_VISCOSITY", iPoint, Node_Flow->GetLaminarViscosity(iPoint));
   }
 
+  SetVolumeOutputValue("THERMAL_KTR", iPoint, Node_Flow->GetThermalConductivity(iPoint));
+  SetVolumeOutputValue("THERMAL_KVE", iPoint, Node_Flow->GetThermalConductivity_ve(iPoint));
+
   if (config->GetKind_Trans_Model() == BC){
     SetVolumeOutputValue("INTERMITTENCY", iPoint, Node_Turb->GetGammaBC(iPoint));
   }
@@ -571,6 +576,9 @@ void CNEMOCompOutput::LoadSurfaceData(CConfig *config, CGeometry *geometry, CSol
 
     SetVolumeOutputValue("HEAT_FLUX", iPoint, solver[FLOW_SOL]->GetHeatFlux(iMarker, iVertex));
     SetVolumeOutputValue("Y_PLUS", iPoint, solver[FLOW_SOL]->GetYPlus(iMarker, iVertex));
+
+    SetVolumeOutputValue("THERMAL_TR", iPoint, Node_Flow->GetThermalConductivity(iPoint));
+    SetVolumeOutputValue("THERMAL_VE", iPoint, Node_Flow->GetThermalConductivity_ve(iPoint));
   }
 }
 

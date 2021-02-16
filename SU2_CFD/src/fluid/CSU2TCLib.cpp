@@ -1003,9 +1003,11 @@ vector<su2double>& CSU2TCLib::ComputeSpeciesEnthalpy(su2double val_T, su2double 
 vector<su2double>& CSU2TCLib::GetDiffusionCoeff(){
 
   if(Kind_TransCoeffModel == WILKE)
-   DiffusionCoeffWBE();
+    DiffusionCoeffWBE();
   if(Kind_TransCoeffModel == GUPTAYOS)
-   DiffusionCoeffGY();
+    DiffusionCoeffGY();
+  if(Kind_TransCoeffModel == DEBUG)
+    DiffusionCoeffD();
 
   return DiffusionCoeff;
 
@@ -1017,7 +1019,8 @@ su2double CSU2TCLib::GetViscosity(){
     ViscosityWBE();
   if(Kind_TransCoeffModel == GUPTAYOS)
     ViscosityGY();
-
+  if(Kind_TransCoeffModel == DEBUG)
+    ViscosityD();
   return Mu;
 
 }
@@ -1028,6 +1031,8 @@ vector<su2double>& CSU2TCLib::GetThermalConductivities(){
     ThermalConductivitiesWBE();
   if(Kind_TransCoeffModel == GUPTAYOS)
     ThermalConductivitiesGY();
+  if(Kind_TransCoeffModel == DEBUG)
+    ThermalConductivitiesD();
 
   return ThermalConductivities;
 
@@ -1148,6 +1153,44 @@ void CSU2TCLib::ThermalConductivitiesWBE(){
   ThermalConductivities[0] = ThermalCond_tr;
   ThermalConductivities[1] = ThermalCond_ve;
 }
+
+void CSU2TCLib::DiffusionCoeffD(){
+
+  if (nSpecies !=1) {
+    cout << "DEBUG MODEL only works with Argon " << endl;
+    exit(1);
+  }
+
+  if (nSpecies==1) DiffusionCoeff[0] = 0;
+}
+
+void CSU2TCLib::ViscosityD(){
+  
+
+  su2double Mu_ref = 2.125E-5;
+  su2double T_ref  = 273.15;
+  su2double S_ref  = 114;
+
+  su2double T_nd = t / t_ref_;
+
+  /*--- Calculate mixture laminar viscosity ---*/
+  Mu = Mu_ref * T_nd * sqrt(T_nd) * ((T_ref + S_ref) / (T + S_ref));
+
+}
+
+void CSU2TCLib::ThermalConductivitiesD(){
+
+  su2double Pr_lam  = 0.68;
+  su2double Mass    = rhos[0]*MolarMass[0];
+  su2double Ru      = 1000.0*UNIVERSAL_GAS_CONSTANT;
+  su2double rhoCvtr = ComputerhoCvtr();
+
+  su2double Cp = rhoCvtr + Ru/Mass;
+
+  ThermalConductivities[0] = Mu*Cp/Pr_lam;
+  ThermalConductivities[1] = 0.0;
+}
+
 
 void CSU2TCLib::DiffusionCoeffGY(){
 
