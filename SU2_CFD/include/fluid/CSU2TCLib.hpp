@@ -197,11 +197,6 @@ public:
   void ThermalConductivitiesGY();
 
   /*!
-   * \brief Get T-R and V-E thermal conductivities vector with Wilke/Blottner/Eucken transport model.
-   */
-  void ThermalConductivitiesWBE();
-
-  /*!
    * \brief Get transport model (Sutherland/debug).
    */
   void DiffusionCoeffD();

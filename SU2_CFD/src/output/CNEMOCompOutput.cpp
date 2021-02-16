@@ -576,9 +576,6 @@ void CNEMOCompOutput::LoadSurfaceData(CConfig *config, CGeometry *geometry, CSol
 
     SetVolumeOutputValue("HEAT_FLUX", iPoint, solver[FLOW_SOL]->GetHeatFlux(iMarker, iVertex));
     SetVolumeOutputValue("Y_PLUS", iPoint, solver[FLOW_SOL]->GetYPlus(iMarker, iVertex));
-
-    SetVolumeOutputValue("THERMAL_TR", iPoint, Node_Flow->GetThermalConductivity(iPoint));
-    SetVolumeOutputValue("THERMAL_VE", iPoint, Node_Flow->GetThermalConductivity_ve(iPoint));
   }
 }
 

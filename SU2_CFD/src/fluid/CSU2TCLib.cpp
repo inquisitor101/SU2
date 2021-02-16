@@ -1171,7 +1171,7 @@ void CSU2TCLib::ViscosityD(){
   su2double T_ref  = 273.15;
   su2double S_ref  = 114;
 
-  su2double T_nd = t / t_ref_;
+  su2double T_nd = T / T_ref;
 
   /*--- Calculate mixture laminar viscosity ---*/
   Mu = Mu_ref * T_nd * sqrt(T_nd) * ((T_ref + S_ref) / (T + S_ref));
