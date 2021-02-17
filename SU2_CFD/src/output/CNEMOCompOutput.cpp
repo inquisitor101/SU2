@@ -498,8 +498,8 @@ void CNEMOCompOutput::LoadVolumeData(CConfig *config, CGeometry *geometry, CSolv
     SetVolumeOutputValue("LAMINAR_VISCOSITY", iPoint, Node_Flow->GetLaminarViscosity(iPoint));
   }
 
-  SetVolumeOutputValue("THERMAL_KTR", iPoint, Node_Flow->GetThermalConductivity(iPoint));
-  SetVolumeOutputValue("THERMAL_KVE", iPoint, Node_Flow->GetThermalConductivity_ve(iPoint));
+  SetVolumeOutputValue("THERMAL_TR", iPoint, Node_Flow->GetThermalConductivity(iPoint));
+  SetVolumeOutputValue("THERMAL_VE", iPoint, Node_Flow->GetThermalConductivity_ve(iPoint));
 
   if (config->GetKind_Trans_Model() == BC){
     SetVolumeOutputValue("INTERMITTENCY", iPoint, Node_Turb->GetGammaBC(iPoint));
