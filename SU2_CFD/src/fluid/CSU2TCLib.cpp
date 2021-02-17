@@ -1181,12 +1181,11 @@ void CSU2TCLib::ViscosityD(){
 void CSU2TCLib::ThermalConductivitiesD(){
 
   su2double Pr_lam  = 0.68;
-  su2double Mass    = rhos[0]*MolarMass[0];
-  su2double Ru      = 1000.0*UNIVERSAL_GAS_CONSTANT;
-  su2double rhoCvtr = ComputerhoCvtr();
+  su2double R       = 1000.0*UNIVERSAL_GAS_CONSTANT/MolarMass[0];
+  su2double Cvtr = ComputerhoCvtr()/rhos[0];
 
-  su2double Cp = rhoCvtr + Ru/Mass;
-
+  su2double Cp = Cvtr + R;
+  
   ThermalConductivities[0] = Mu*Cp/Pr_lam;
   ThermalConductivities[1] = 0.0;
 }
