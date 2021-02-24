@@ -1305,7 +1305,6 @@ void CNEMOEulerSolver::Source_Residual(CGeometry *geometry, CSolver **solver_con
   eChm_global = eChm_local;
   eVib_global = eVib_local;
 
-  //THIS IS NO FUN
   if ((eAxi_global != 0) ||
       (eChm_global != 0) ||
       (eVib_global != 0)) {
@@ -1750,8 +1749,8 @@ void CNEMOEulerSolver::SetNondimensionalization(CConfig *config, unsigned short 
     ModelTableOut <<"-- Models:"<< endl;
 
     ModelTable.AddColumn("Mixture", 25);
-    ModelTable.AddColumn("Transport Model", 25);
     ModelTable.AddColumn("Fluid Model", 25);
+    ModelTable.AddColumn("Transport Model", 25);
     ModelTable.SetAlign(PrintingToolbox::CTablePrinter::RIGHT);
     ModelTable.PrintHeader();
 
