@@ -1249,7 +1249,7 @@ void CNEMOEulerSolver::Source_Residual(CGeometry *geometry, CSolver **solver_con
           numerics->SetConservative(nodes->GetSolution(iPoint),   nodes->GetSolution(iPoint));
 
           /*--- Set primitive vars ---*/
-          numerics->SetPrimitive   (nodes->GetPrimitive(iPoint),  nodes->GetPrimitive(iPoint) );
+          numerics->SetPrimitive(nodes->GetPrimitive(iPoint),  nodes->GetPrimitive(iPoint) );
 
           /*--- Set gradient of primitive variables ---*/
           numerics->SetPrimVarGradient(nodes->GetGradient_Primitive(iPoint), nodes->GetGradient_Primitive(iPoint));

@@ -1116,11 +1116,16 @@ void CSU2TCLib::ViscosityWBE(){
     }
   }
 
-  /*--- Calculate mixture laminar viscosity ---*/
-  Mu = 0.0;
-  for (iSpecies = 0; iSpecies < nSpecies; iSpecies++){
-    Mu += MolarFracWBE[iSpecies]*mus[iSpecies]/phis[iSpecies];
-  }
+//   /*--- Calculate mixture laminar viscosity ---*/
+//   Mu = 0.0;
+//   for (iSpecies = 0; iSpecies < nSpecies; iSpecies++){
+//     Mu += MolarFracWBE[iSpecies]*mus[iSpecies]/phis[iSpecies];
+//   }
+// }
+
+    // DELETE ME : TEST VALUE FOR AIR USING SUTHERLAND
+
+    Mu = 1.716E-5 * pow((T/273), 1.5) * (273 + 111) / (T + 111);
 }
 
 void CSU2TCLib::ThermalConductivitiesWBE(){
