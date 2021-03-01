@@ -934,6 +934,12 @@ history_header_map = {'ADJOINT_DISP_X': {'DESCRIPTION': 'Root-mean square residu
                         'GROUP': 'FLOW_COEFF',
                         'HEADER': 'Uniformity',
                         'TYPE': 'COEFFICIENT'},
+
+ 'CUSTOM_OBJFUNC': {'DESCRIPTION': 'Custom objective function defined in solver->Evaluate_ObjFunc',
+                      'GROUP': 'FLOW_COEFF',
+                      'HEADER': 'Custom_Objfunc',
+                      'TYPE': 'COEFFICIENT'},                       
+                        
  'TAVG_AEROCDRAG': {'DESCRIPTION': 'weighted time average value',
                     'GROUP': 'TAVG_ENGINE_OUTPUT',
                     'HEADER': 'tavg[AeroCDrag]',
