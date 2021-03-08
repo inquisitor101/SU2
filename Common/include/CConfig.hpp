@@ -873,7 +873,8 @@ private:
   Viscosity_FreeStreamND,     /*!< \brief Farfield viscosity value (external flow). */
   Tke_FreeStreamND,           /*!< \brief Farfield kinetic energy (external flow). */
   Omega_FreeStreamND,         /*!< \brief Specific dissipation (external flow). */
-  Omega_FreeStream;           /*!< \brief Specific dissipation (external flow). */
+  Omega_FreeStream,           /*!< \brief Specific dissipation (external flow). */
+	Friction_Reynolds;          /*!< \brief Friction Reynolds number. */
   unsigned short nElectric_Constant;    /*!< \brief Number of different electric constants. */
   su2double *Electric_Constant;         /*!< \brief Dielectric constant modulus. */
   su2double Knowles_B,                  /*!< \brief Knowles material model constant B. */
@@ -9429,5 +9430,10 @@ public:
    * \return -1 if (on this mpi rank) the zone defined by config is not part of the interface.
    */
   short FindInterfaceMarker(unsigned short iInterface) const;
+
+  /*!
+   * \brief Get the target friction Reynolds number specified.
+   */
+  su2double GetFrictionReynolds(void) const { return Friction_Reynolds; }
 
 };

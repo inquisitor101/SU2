@@ -1171,6 +1171,10 @@ void CConfig::SetConfig_Options() {
   /*!\brief MOLECULAR_WEIGHT \n DESCRIPTION: Molecular weight for an incompressible ideal gas (28.96 g/mol (air) default) \ingroup Config*/
   addDoubleOption("MOLECULAR_WEIGHT", Molecular_Weight, 28.96);
 
+  /*!\brief FRICTION_REYNOLDS \n DESCRIPTION: Specify the target friction Reynolds number (used in turbulent channel flows)*/
+  addDoubleOption("FRICTION_REYNOLDS", Friction_Reynolds, 5200);
+
+
   /*--- Options related to VAN der WAALS MODEL and PENG ROBINSON ---*/
 
   /* DESCRIPTION: Critical Temperature, default value for AIR */

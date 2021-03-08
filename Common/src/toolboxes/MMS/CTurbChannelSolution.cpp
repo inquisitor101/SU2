@@ -86,7 +86,7 @@ CTurbChannelSolution::CTurbChannelSolution(unsigned short val_nDim,
 
   Verification_Solution = config->GetVerification_Solution();
   if ( Verification_Solution == TURBULENT_CHANNEL)
-    ReynoldsFriction = 5200.0;  // Friction Reynolds Number.
+    ReynoldsFriction = config->GetFrictionReynolds(); //5200.0;  // Friction Reynolds Number.
   else if (Verification_Solution == PERIODIC_HILL)
     ReynoldsFriction = 582.0;  // Friction Reynolds Number.
 
